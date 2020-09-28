@@ -5,55 +5,55 @@ var board = {
   cells: [{
       row: 0,
       col: 0,
-      isMine: Math.floor(Math.random() * 2),
+      isMine: randomMines(),
       hidden: true,
     },
     {
       row: 0,
       col: 1,
-      isMine: Math.floor(Math.random() * 2),
+      isMine: randomMines(),
       hidden: true,
     },
     {
       row: 0,
       col: 2,
-      isMine: Math.floor(Math.random() * 2),
+      isMine: randomMines(),
       hidden: true,
     },
     {
       row: 1,
       col: 0,
-      isMine: Math.floor(Math.random() * 2),
+      isMine: randomMines(),
       hidden: true,
     },
     {
       row: 1,
       col: 1,
-      isMine: Math.floor(Math.random() * 2),
+      isMine: randomMines(),
       hidden: true,
     },
     {
       row: 1,
       col: 2,
-      isMine: Math.floor(Math.random() * 2),
+      isMine: randomMines(),
       hidden: true,
     },
     {
       row: 2,
       col: 0,
-      isMine: Math.floor(Math.random() * 2),
+      isMine: randomMines(),
       hidden: true,
     },
     {
       row: 2,
       col: 1,
-      isMine: Math.floor(Math.random() * 2),
+      isMine: randomMines(),
       hidden: true,
     },
     {
       row: 2,
       col: 2,
-      isMine: Math.floor(Math.random() * 2),
+      isMine: randomMines(),
       hidden: true,
     },
   ],
@@ -62,7 +62,7 @@ var board = {
 function startGame() {
   // Don't remove this function call: it makes the game work!
   // Create a for loop that loops through the contents of board.cells
-  for (let i = 0; i < board.cells.length; i++) {
+  for (var i = 0; i < board.cells.length; i++) {
     // console.log(board.cells[i]);
     board.cells[i].surroundingMines = countSurroundingMines(board.cells[i]);
     // Create an event listener and pass in checkForWin
@@ -81,10 +81,11 @@ function startGame() {
 function checkForWin() {
   // Create a loop through all the board cells
   for (var i = 0; i < board.cells.length; i++) {
-    if (board.cells[i].isMine === 1 && board.cells[i].isMarked === false) {
-      return;
-    } else if (board.cells[i].isMine === 0 && board.cells[i].isMarked === true) {
-      return;
+    if (board.cells[i].isMine === true && board.cells[i].isMarked === false) {
+      return
+    }
+    if (board.cells[i].isMine === false && board.cells[i].isMarked === true) {
+      return
     }
   }
 
@@ -115,4 +116,14 @@ function countSurroundingMines(cell) {
   return mines;
 }
 
+// Need to create a function that randomises the location of mines and returns a true/false statement in order for the checkForWin function to work.
+function randomMines () {
+  var num = Math.random();
+  if (num < 0.4) {
+    return true;
+  }
+  return false;
+}
+
+console.log(board)
 console.log(board)
