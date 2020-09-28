@@ -81,14 +81,13 @@ function startGame() {
 function checkForWin() {
   // Create a loop through all the board cells
   for (var i = 0; i < board.cells.length; i++) {
-    if (board.cells[i].isMine === true && board.cells[i].isMarked === false) {
+    // If there is a mine and it hasn't been flagged exit loop
+    if (board.cells[i].isMine === true && board.cells[i].isMarked === false)
       return
-    }
-    if (board.cells[i].isMine === false && board.cells[i].isMarked === true) {
+    // if every mine is marked but there are still cells hidden exit loop
+    if (board.cells[i].isMine === false && board.cells[i].hidden === true)
       return
-    }
   }
-
   // You can use this function call to declare a winner (once you've
   // detected that they've won, that is!)
   lib.displayMessage('You win!');
@@ -117,7 +116,7 @@ function countSurroundingMines(cell) {
 }
 
 // Need to create a function that randomises the location of mines and returns a true/false statement in order for the checkForWin function to work.
-function randomMines () {
+function randomMines() {
   var num = Math.random();
   if (num < 0.4) {
     return true;
@@ -125,5 +124,4 @@ function randomMines () {
   return false;
 }
 
-console.log(board)
 console.log(board)
