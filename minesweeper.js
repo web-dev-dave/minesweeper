@@ -106,11 +106,11 @@ function countSurroundingMines(cell) {
   let mines = 0;
 
   // Create loop for surrounding to add the count if its a mine cells.isMine
-  surrounding.forEach((game) => {
-    if (game.isMine) {
+  for (var i = 0; i < surrounding.length; i++) {
+      if(surrounding[i].isMine === true){
       mines++;
     }
-  });
+  };
   // Return count
   return mines;
 }
