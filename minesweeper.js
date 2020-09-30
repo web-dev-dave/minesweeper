@@ -2,62 +2,29 @@ document.addEventListener('DOMContentLoaded', startGame)
 
 // Define your `board` object here!
 var board = {
-  cells: [{
-      row: 0,
-      col: 0,
-      isMine: randomMines(),
-      hidden: true,
-    },
-    {
-      row: 0,
-      col: 1,
-      isMine: randomMines(),
-      hidden: true,
-    },
-    {
-      row: 0,
-      col: 2,
-      isMine: randomMines(),
-      hidden: true,
-    },
-    {
-      row: 1,
-      col: 0,
-      isMine: randomMines(),
-      hidden: true,
-    },
-    {
-      row: 1,
-      col: 1,
-      isMine: randomMines(),
-      hidden: true,
-    },
-    {
-      row: 1,
-      col: 2,
-      isMine: randomMines(),
-      hidden: true,
-    },
-    {
-      row: 2,
-      col: 0,
-      isMine: randomMines(),
-      hidden: true,
-    },
-    {
-      row: 2,
-      col: 1,
-      isMine: randomMines(),
-      hidden: true,
-    },
-    {
-      row: 2,
-      col: 2,
-      isMine: randomMines(),
-      hidden: true,
-    },
-  ],
+  cells:[]
 };
+
+// Make a prompt to pick boardsize
+var boardSize = prompt("Pick what board size you would like to play on? 3, 4, 5 or 6?");
+
+// Create a function to auto generate board
+function boardGenerator() {
+  for (var i = 0; i < boardSize; i++) {
+    for (var j = 0; j < boardSize; j++) {
+      board.cells.push({
+        row: i,
+        col: j,
+        isMine: randomMines(),
+        hidden: true
+      })
+    }
+  }
+}
+
+console.log(boardSize)
+// Invoke board generator
+boardGenerator();
 
 function startGame() {
   // Don't remove this function call: it makes the game work!
