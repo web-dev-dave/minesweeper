@@ -2,7 +2,7 @@ document.addEventListener('DOMContentLoaded', startGame)
 
 // Define your `board` object here!
 var board = {
-  cells:[]
+  cells: [],
 };
 
 // Make a prompt to pick boardsize
@@ -16,13 +16,12 @@ function boardGenerator() {
         row: i,
         col: j,
         isMine: randomMines(),
-        hidden: true
-      })
+        hidden: true,
+      });
     }
   }
 }
 
-console.log(boardSize)
 // Invoke board generator
 boardGenerator();
 
@@ -35,12 +34,15 @@ function startGame() {
   // Don't remove this function call: it makes the game work!
   // Create a for loop that loops through the contents of board.cells
   for (var i = 0; i < board.cells.length; i++) {
+
     // console.log(board.cells[i]);
     board.cells[i].surroundingMines = countSurroundingMines(board.cells[i]);
+
     // Create an event listener and pass in checkForWin
     document.addEventListener('click', checkForWin);
     document.addEventListener('contextmenu', checkForWin);
   }
+
   lib.initBoard();
 }
 
@@ -53,18 +55,15 @@ function startGame() {
 function checkForWin() {
   // Create a loop through all the board cells
   for (var i = 0; i < board.cells.length; i++) {
-    var audio = new Audio("./laugh.wav");
     // If there is a mine and it hasn't been flagged exit loop
-    if (board.cells[i].isMine === false) {
-      audio.play();
-    }
-
     if (board.cells[i].isMine === true && board.cells[i].isMarked === false)
-      return
+      return;
+
     // if every mine is marked but there are still cells hidden exit loop
     if (board.cells[i].isMine === false && board.cells[i].hidden === true)
-      return
+      return;
   }
+
   // You can use this function call to declare a winner (once you've
   // detected that they've won, that is!)
   lib.displayMessage('You win!');
@@ -84,10 +83,11 @@ function countSurroundingMines(cell) {
 
   // Create loop for surrounding to add the count if its a mine cells.isMine
   for (var i = 0; i < surrounding.length; i++) {
-      if(surrounding[i].isMine === true){
+    if (surrounding[i].isMine === true) {
       mines++;
     }
-  };
+  }
+
   // Return count
   return mines;
 }
@@ -98,7 +98,6 @@ function randomMines() {
   if (num < 0.4) {
     return true;
   }
+
   return false;
 }
-
-console.log(board)
