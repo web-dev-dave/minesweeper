@@ -10,6 +10,16 @@ body {
   flex-direction: column;
 }
 
+.btn {
+  margin-top: 20px;
+  background-color: red;
+  color: white;
+  padding: 15px 32px;
+  font-size: 20px;
+  border-color: red;
+  text-transform: uppercase;
+}
+
 #message, #notes {
   display: flex;
   flex-direction: column;

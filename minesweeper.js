@@ -26,6 +26,11 @@ console.log(boardSize)
 // Invoke board generator
 boardGenerator();
 
+// Make reset button
+function reset() {
+  window.location.reload();
+}
+
 function startGame() {
   // Don't remove this function call: it makes the game work!
   // Create a for loop that loops through the contents of board.cells
@@ -48,7 +53,12 @@ function startGame() {
 function checkForWin() {
   // Create a loop through all the board cells
   for (var i = 0; i < board.cells.length; i++) {
+    var audio = new Audio("./laugh.wav");
     // If there is a mine and it hasn't been flagged exit loop
+    if (board.cells[i].isMine === false) {
+      audio.play();
+    }
+
     if (board.cells[i].isMine === true && board.cells[i].isMarked === false)
       return
     // if every mine is marked but there are still cells hidden exit loop
